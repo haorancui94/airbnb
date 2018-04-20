@@ -54,6 +54,12 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $menuItems,
     ]);
+    echo "<form class='navbar-form navbar-left' role='search'>
+             <div class='form-group has-feedback'>
+                 <input id='searchbox' type='text' placeholder='NewYork, NY' class='form-control'>
+                 <span id='searchicon' class='fa fa-search form-control-feedback'></span>
+             </div>
+           </form>";
     NavBar::end();
     ?>
 
