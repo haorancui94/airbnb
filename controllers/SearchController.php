@@ -9,6 +9,7 @@ namespace app\controllers;
 use app\models\Listing;
 use yii\data\Pagination;
 use yii\web\Controller;
+use Yii;
 class SearchController extends Controller{
     public function actionCity(){
         $query = Listing::find();
@@ -25,4 +26,21 @@ class SearchController extends Controller{
             'pagination' => $pagination,
         ]);
     }
+    public function actionSearchCityByKey(){
+    	$search_key = Yii::$app->request->get('search_key');
+		$query = Listing::find();
+		$pagination = new Pagination([
+			'defaultPageSize' => 5,
+			'totalCount' => $query->count(),
+		]);
+		$listings = $query
+			->where([''])
+			->offset($pagination->offset)
+			->limit($pagination->limit)
+			->all();
+		return $this->render('index', [
+			'listings' => $listings,
+			'pagination' => $pagination,
+		]);
+	}
 }
