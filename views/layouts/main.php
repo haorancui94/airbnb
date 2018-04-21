@@ -57,7 +57,11 @@ AppAsset::register($this);
     $search_key=empty(Yii::$app->request->get('search_key'))?'NewYork, NY':Yii::$app->request->get('search_key');
     echo "<form class='navbar-form navbar-left' role='search'>
              <div class='form-group has-feedback'>
+<<<<<<< HEAD
                  <input id='searchbox' type='text' placeholder='{$search_key}' class='form-control' onkeydown='searchByKey(this.value)'>
+=======
+                 <input id='searchbox1' type='text' placeholder='{$search_key}' class='form-control' onkeydown='searchByKey()'>
+>>>>>>> d6b326f3edae56966c4c1355629ffb4766085456
                  <span id='searchicon' class='fa fa-search form-control-feedback' onclick='searchByKey()'></span>
              </div>
            </form>";
