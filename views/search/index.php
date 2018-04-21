@@ -12,8 +12,8 @@ use yii\widgets\LinkPager;
 <ul>
     <?php foreach ($listings as $listing): ?>
         <li>
-            <?= Html::encode("{$listing->city} ({$listing->state})") ?>:
-            <?= $listing->zipcode ?>
+            <?= Html::encode("{$listing->CITY} ({$listing->STATE})") ?>:
+            <?= $listing->ZIPCODE ?>
         </li>
     <?php endforeach; ?>
 </ul>
