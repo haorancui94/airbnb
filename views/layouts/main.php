@@ -54,10 +54,11 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $menuItems,
     ]);
+    $search_key=empty(Yii::$app->request->get('search_key'))?'NewYork, NY':Yii::$app->request->get('search_key');
     echo "<form class='navbar-form navbar-left' role='search'>
              <div class='form-group has-feedback'>
-                 <input id='searchbox' type='text' placeholder='NewYork, NY' class='form-control'>
-                 <span id='searchicon' class='fa fa-search form-control-feedback'></span>
+                 <input id='searchbox' type='text' placeholder='{$search_key}' class='form-control' onkeydown='searchByKey(this.value)'>
+                 <span id='searchicon' class='fa fa-search form-control-feedback' onclick='searchByKey()'></span>
              </div>
            </form>";
     NavBar::end();
@@ -81,6 +82,14 @@ AppAsset::register($this);
 </footer>
 
 <?php $this->endBody() ?>
+<script>
+    function searchByKey() {
+        var search_key1 = document.getElementById("searchbox1").value;
+        var search_key2 = document.getElementById("searchbox2").value;
+        var search_key = (search_key1 != "")?search_key1:((search_key2 != "")?search_key2:"");
+        window.location.href="http://my.airbnb.com/index.php?r=search/city&search_key="+search_key;
+    }
+</script>
 </body>
 </html>
 <?php $this->endPage() ?>
