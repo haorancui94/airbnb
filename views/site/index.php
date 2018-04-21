@@ -11,8 +11,8 @@ use yii\bootstrap\ActiveForm;
     <div class="jumbotron">
         <h1>Airbnb Analysis</h1>
         <div class="input-group col-lg-4 col-lg-offset-4">
-            <input name="searchbox" type="text" class="form-control" placeholder="NewYork, NY" aria-describedby="basic-addon2" onkeydown="searchByKey(this.value)">
-            <span class="input-group-addon" id="basic-addon2" onclick="searchByKey()">Search</span>
+            <input id="searchbox1" type="text" class="form-control" placeholder="NewYork, NY" aria-describedby="basic-addon2" onkeydown="searchByKey(this.value)">
+            <span class="input-group-addon" id="basic-addon2" onclick="searchByKey1()">Search</span>
         </div>
 
     </div>
@@ -55,3 +55,9 @@ use yii\bootstrap\ActiveForm;
 
     </div>
 </div>
+<script>
+    function searchByKey1() {
+        search_key = document.getElementById("searchbox1").value;
+        window.location.href="http://my.airbnb.com/index.php?r=search/city&search_key="+search_key;
+    }
+</script>
