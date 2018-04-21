@@ -11,7 +11,7 @@ use yii\bootstrap\ActiveForm;
     <div class="jumbotron">
         <h1>Airbnb Analysis</h1>
         <div class="input-group col-lg-4 col-lg-offset-4">
-            <input name="searchbox" type="text" class="form-control" placeholder="NewYork, NY" aria-describedby="basic-addon2" onkeydown="searchByKey()">
+            <input name="searchbox" type="text" class="form-control" placeholder="NewYork, NY" aria-describedby="basic-addon2" onkeydown="searchByKey(this.value)">
             <span class="input-group-addon" id="basic-addon2" onclick="searchByKey()">Search</span>
         </div>
 
