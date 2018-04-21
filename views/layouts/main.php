@@ -57,7 +57,7 @@ AppAsset::register($this);
     $search_key=empty(Yii::$app->request->get('search_key'))?'NewYork, NY':Yii::$app->request->get('search_key');
     echo "<form class='navbar-form navbar-left' role='search'>
              <div class='form-group has-feedback'>
-                 <input id='searchbox1' type='text' placeholder='{$search_key}' lass='form-control' onkeydown='searchByKey(this.value)'>
+                <input id='searchbox1' type='text' class='form-control' placeholder='NewYork, NY' aria-describedby='basic-addon2' onkeydown='searchByKey(this.value)'>
              </div>
            </form>";
     NavBar::end();
@@ -72,6 +72,16 @@ AppAsset::register($this);
     </div>
 </div>
 
+<script>
+    function searchByKey(search_key) {
+        if (event.keyCode == 13){
+            event.returnValue=false;
+            event.cancel = true;
+            window.location.href="<?=HOST;?>/index.php?r=search/city&search_key="+search_key;
+        }
+    }
+</script>
+
 <footer class="footer">
     <div class="container">
         <p class="pull-left">&copy; Airbnb Analysis <?= date('Y') ?></p>
@@ -81,13 +91,6 @@ AppAsset::register($this);
 </footer>
 
 <?php $this->endBody() ?>
-<script>
-    function searchByKey(search_key) {
-        if (event.keyCode == 13){
-            window.location.href="<?=HOST;?>"+"/index.php?r=search/city&search_key="+search_key;
-        }
-    }
-</script>
 </body>
 </html>
 <?php $this->endPage() ?>

@@ -50,14 +50,10 @@ use yii\bootstrap\ActiveForm;
         <!-- Controls -->
 
     </div>
-
-
-
-    </div>
 </div>
 <script>
     function searchByKey1() {
         search_key = document.getElementById("searchbox1").value;
-        window.location.href="http://my.airbnb.com/index.php?r=search/city&search_key="+search_key;
+        window.location.href="<?=HOST;?>/index.php?r=search/city&search_key="+search_key;
     }
 </script>
