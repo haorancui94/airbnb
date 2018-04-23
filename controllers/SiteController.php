@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Users;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -147,4 +148,20 @@ class SiteController extends Controller
 			'model' => $model,
 		]);
 	}
+
+	public function actionUserinfo()
+	{
+		$model = new Users();
+		if ($model->load(Yii::$app->request->post())) {
+			if ($model->validate()) {
+				return;
+			}
+		}
+		$user_info = Yii::$app->user->identity;
+
+		return $this->render('userinfo', [
+			'model' => $model,
+		]);
+	}
+
 }
