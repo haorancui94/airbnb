@@ -44,11 +44,12 @@ AppAsset::register($this);
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
+                'Logout',
                 ['class' => 'btn btn-link logout']
             )
             . Html::endForm()
             . '</li>';
+        $menuItems[] = ['label' => '(' . Yii::$app->user->identity->username . ')', 'url' => ['/site/userinfo']];
     }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
