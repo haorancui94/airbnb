@@ -2,8 +2,6 @@
 
 namespace app\controllers;
 
-use app\models\Reviews;
-use app\models\User;
 use app\models\Users;
 use Yii;
 use yii\filters\AccessControl;
@@ -153,21 +151,16 @@ class SiteController extends Controller
 
 	public function actionUserinfo()
 	{
-		$user_id = Yii::$app->user->identity->id;
-		$userinfo = Users::findOne($user_id);
-		if ($userinfo->load(Yii::$app->request->post()) && $user_id) {
-			$userinfo->save();
+		$model = new Users();
+		if ($model->load(Yii::$app->request->post())) {
+			if ($model->validate()) {
+				return;
+			}
 		}
-		if (!empty($user_id)){
-			$query = Reviews::find();
-			$reviews = $query
-				->where(['HAS'=>$user_id])
-				->asArray()
-				->all();
-		}
+		$user_info = Yii::$app->user->identity;
+
 		return $this->render('userinfo', [
-			'model' => $userinfo,
-			'reviews' => empty($reviews)?[]:$reviews,
+			'model' => $model,
 		]);
 	}
 
