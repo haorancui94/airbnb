@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\User;
 use app\models\Users;
 use Yii;
 use yii\filters\AccessControl;
@@ -152,15 +153,25 @@ class SiteController extends Controller
 	public function actionUserinfo()
 	{
 		$model = new Users();
-		if ($model->load(Yii::$app->request->post())) {
-			if ($model->validate()) {
-				return;
+		$user_id = Yii::$app->user->identity->id;
+		if ($model->load(Yii::$app->request->post()) && $user_id) {
+
+		}
+		if (!empty($user_id)){
+			$query = Users::find();
+			$userinfo = $query
+				->where(['USER_ID'=>$user_id])
+				->asArray()
+				->one();
+		}
+		if (!empty($userinfo)){
+			foreach ($userinfo as $k=>&$v){
+				$v = empty($v)?'':$v;
 			}
 		}
-		$user_info = Yii::$app->user->identity;
-
 		return $this->render('userinfo', [
 			'model' => $model,
+			'userinfo'=> empty($userinfo)?'':$userinfo
 		]);
 	}
 
