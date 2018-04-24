@@ -152,26 +152,25 @@ class SiteController extends Controller
 
 	public function actionUserinfo()
 	{
-		$model = new Users();
 		$user_id = Yii::$app->user->identity->id;
-		if ($model->load(Yii::$app->request->post()) && $user_id) {
-
+		$userinfo = Users::findOne($user_id);
+		if ($userinfo->load(Yii::$app->request->post()) && $user_id) {
+			$userinfo->save();
 		}
-		if (!empty($user_id)){
-			$query = Users::find();
-			$userinfo = $query
-				->where(['USER_ID'=>$user_id])
-				->asArray()
-				->one();
-		}
-		if (!empty($userinfo)){
-			foreach ($userinfo as $k=>&$v){
-				$v = empty($v)?'':$v;
-			}
-		}
+//		if (!empty($user_id)){
+//			$query = Users::find();
+//			$userinfo = $query
+//				->where(['USER_ID'=>$user_id])
+//				->asArray()
+//				->one();
+//		}
+//		if (!empty($userinfo)){
+//			foreach ($userinfo as $k=>&$v){
+//				$v = empty($v)?'':$v;
+//			}
+//		}
 		return $this->render('userinfo', [
-			'model' => $model,
-			'userinfo'=> empty($userinfo)?'':$userinfo
+			'model' => $userinfo,
 		]);
 	}
 
