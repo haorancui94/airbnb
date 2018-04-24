@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Reviews;
 use app\models\User;
 use app\models\Users;
 use Yii;
@@ -157,20 +158,16 @@ class SiteController extends Controller
 		if ($userinfo->load(Yii::$app->request->post()) && $user_id) {
 			$userinfo->save();
 		}
-//		if (!empty($user_id)){
-//			$query = Users::find();
-//			$userinfo = $query
-//				->where(['USER_ID'=>$user_id])
-//				->asArray()
-//				->one();
-//		}
-//		if (!empty($userinfo)){
-//			foreach ($userinfo as $k=>&$v){
-//				$v = empty($v)?'':$v;
-//			}
-//		}
+		if (!empty($user_id)){
+			$query = Reviews::find();
+			$reviews = $query
+				->where(['HAS'=>$user_id])
+				->asArray()
+				->all();
+		}
 		return $this->render('userinfo', [
 			'model' => $userinfo,
+			'reviews' => empty($reviews)?[]:$reviews,
 		]);
 	}
 
