@@ -130,8 +130,10 @@ $bathrooms = empty(Yii::$app->request->get('bathrooms'))?"0":Yii::$app->request-
         <div class="row">
             <?php foreach ($listings as $listing): ?>
             <div class="col-lg-4">
-                <div class="thumbnail" style="height: 330px">
+                <div class="thumbnail" style="height: 350px">
+                    <a onclick="detail(<?=$listing->LISTING_ID?>)">
                     <img src="<?=$listing->MEDIUM_URL?>" alt="Not Find">
+                    </a>
                     <div class="caption">
                         <p><?=$listing->ROOM_TYPE?></p>
                         <h4><strong><?=$listing->NAME?></strong></h4>
@@ -201,6 +203,9 @@ $bathrooms = empty(Yii::$app->request->get('bathrooms'))?"0":Yii::$app->request-
                     }
                 }
             } );
+            function detail(id) {
+                window.location.href="<?=HOST;?>/index.php?r=detail/detail&id="+id;
+            }
             function search() {
                 search_key = document.getElementById("searchbox1").placeholder;
                 roomtype = new Array();
