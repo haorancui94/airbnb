@@ -62,18 +62,20 @@ class OricalDb extends ActiveRecord
         }
     }
 
-    public function saveUser($username='', $password='')
+    public function saveUser($username='', $password='',$id = 0)
 	{
+	    $id = \Yii::$app->params['id'];
 		if (empty($username) || empty($password)) {
 			return false;
 		}
-		$sql = "insert into USERS(email,password) values('{$username}','{$password}')";
+		$sql = "insert into USERS(email,password,user_id) values('{$username}','{$password}','{$id}')";
 		$conn = $this->getConn();
 		$stid = oci_parse($conn, $sql);
 		try {
 			$r = oci_execute($stid);
 			oci_free_statement($stid);
 			oci_close($conn);
+            \Yii::$app->params['id']++;
 			return $r?true:false;
 		} catch (\Exception $exception) {
 			echo $exception->getMessage();

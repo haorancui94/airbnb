@@ -16,21 +16,21 @@ class DetailController extends Controller{
     public function actionDetail(){
         $listing_id= Yii::$app->request->get('id');
         $listing = Listing::find()->where(['=','LISTING_ID',$listing_id])->one();
-        $host = Hosts::find()->where(['HOST_ID' => $listing->OWNS]);
+        $host = Hosts::find()->where(['=','HOST_ID', $listing->OWNS])->one();
         $query= Reviews::find()->where(['HAS' => $listing_id]);
         $trends = Yii::$app->db->createCommand('select firstweek, secondweek, thirdweek, forthweek from
     (select count(*) as firstweek from CALENDAR 
-        where LISTING_ID = :id and IDATE > TO_DATE(\'03/01/2018\',\'mm/dd/yyyy\') 
-        and IDATE < TO_DATE(\'03/07/2018\',\'mm/dd/yyyy\') and AVAILABLE = \'f\'),
+        where LISTING_ID = :id and IDATE >= TO_DATE(\'03/01/2018\',\'mm/dd/yyyy\') 
+        and IDATE <= TO_DATE(\'03/07/2018\',\'mm/dd/yyyy\') and AVAILABLE = \'f\'),
     (select count(*) as secondweek from CALENDAR 
-        where LISTING_ID = :id and IDATE > TO_DATE(\'03/08/2018\',\'mm/dd/yyyy\')
-        and IDATE < TO_DATE(\'03/14/2018\',\'mm/dd/yyyy\') and AVAILABLE = \'f\'),
+        where LISTING_ID = :id and IDATE >= TO_DATE(\'03/08/2018\',\'mm/dd/yyyy\')
+        and IDATE <= TO_DATE(\'03/14/2018\',\'mm/dd/yyyy\') and AVAILABLE = \'f\'),
     (select count(*) as thirdweek from CALENDAR 
-        where LISTING_ID = :id and IDATE > TO_DATE(\'03/15/2018\',\'mm/dd/yyyy\') 
-        and IDATE < TO_DATE(\'03/21/2018\',\'mm/dd/yyyy\') and AVAILABLE = \'f\'),
+        where LISTING_ID = :id and IDATE >= TO_DATE(\'03/15/2018\',\'mm/dd/yyyy\') 
+        and IDATE <= TO_DATE(\'03/21/2018\',\'mm/dd/yyyy\') and AVAILABLE = \'f\'),
     (select count(*) as forthweek from CALENDAR 
-        where LISTING_ID = :id and IDATE > TO_DATE(\'03/22/2018\',\'mm/dd/yyyy\') 
-        and IDATE < TO_DATE(\'03/28/2018\',\'mm/dd/yyyy\') and AVAILABLE = \'f\')')->bindValue(':id',$listing_id)->queryone();
+        where LISTING_ID = :id and IDATE >= TO_DATE(\'03/22/2018\',\'mm/dd/yyyy\') 
+        and IDATE <= TO_DATE(\'03/28/2018\',\'mm/dd/yyyy\') and AVAILABLE = \'f\')')->bindValue(':id',$listing_id)->queryone();
         //echo var_dump($trends);
         //die;
         $pagination = new Pagination([

@@ -12,18 +12,10 @@ use yii\web\Controller;
 use Yii;
 class SearchController extends Controller{
     public function actionCity(){
-        $query = Listing::find();
-        $pagination = new Pagination([
-            'defaultPageSize' => 5,
-            'totalCount' => $query->count(),
-        ]);
-        $listings = $query
-            ->offset($pagination->offset)
-            ->limit($pagination->limit)
-            ->all();
-        return $this->render('index', [
-            'listings' => $listings,
-            'pagination' => $pagination,
+        $search_key = Yii::$app->request->get('search_key');
+        $query = Listing::find()->select(['CITY'])->where(['like',"UPPER(CITY)",strtoupper($search_key)])->distinct()->all();
+        return $this->render('city', [
+            'citys' => $query,
         ]);
     }
     public function actionSearchCityByKey(){

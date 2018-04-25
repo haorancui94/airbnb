@@ -54,6 +54,6 @@ use yii\bootstrap\ActiveForm;
 <script>
     function searchByKey1() {
         search_key = document.getElementById("searchbox1").value;
-        window.location.href="<?=HOST;?>/index.php?r=search/search-city-by-key&search_key="+search_key;
+        window.location.href="<?=HOST;?>/index.php?r=search/city&search_key="+search_key;
     }
 </script>

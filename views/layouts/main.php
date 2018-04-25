@@ -54,10 +54,10 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $menuItems,
     ]);
-    $search_key=empty(Yii::$app->request->get('search_key'))?'Chicago':Yii::$app->request->get('search_key');
+    $search_key=empty(Yii::$app->request->get('search_key'))?'':Yii::$app->request->get('search_key');
     echo "<form class='navbar-form navbar-left' role='search'>
              <div class='form-group has-feedback'>
-                <input id='searchbox1' type='text' class='form-control' placeholder='$search_key' aria-describedby='basic-addon2' onkeydown='searchByKey(this.value)'>
+                <input id='searchbox1' type='text' class='form-control' value ='$search_key' placeholder='NY NewYork' aria-describedby='basic-addon2' onkeydown='searchByKey(this.value)'>
              </div>
            </form>";
     NavBar::end();
@@ -77,7 +77,7 @@ AppAsset::register($this);
         if (event.keyCode == 13){
             event.returnValue=false;
             event.cancel = true;
-            window.location.href="<?=HOST;?>/index.php?r=search/search-city-by-key&search_key="+search_key;
+            window.location.href="<?=HOST;?>/index.php?r=search/city&search_key="+search_key;
         }
     }
 </script>

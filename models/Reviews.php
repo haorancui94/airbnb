@@ -1,15 +1,10 @@
 <?php
-<<<<<<< HEAD
 /**
  * Created by PhpStorm.
  * User: cuiha
  * Date: 2018/4/23
  * Time: 19:58
  */
-namespace app\models;
-use yii\db\ActiveRecord;
-class Reviews extends ActiveRecord{
-=======
 
 namespace app\models;
 
@@ -31,14 +26,10 @@ class Reviews extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
->>>>>>> 857fc7f2d1842b8cb2bf226508b99847ffd98560
     public static function tableName()
     {
         return 'REVIEWS';
     }
-<<<<<<< HEAD
-}
-=======
 
     /**
      * @inheritdoc
@@ -86,4 +77,3 @@ class Reviews extends \yii\db\ActiveRecord
         return new ReviewsQuery(get_called_class());
     }
 }
->>>>>>> 857fc7f2d1842b8cb2bf226508b99847ffd98560
