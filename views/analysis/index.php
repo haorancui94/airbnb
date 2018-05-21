@@ -17,10 +17,10 @@ $this->registerJsFile("@web/js/echarts.min.js",['position' => \yii\web\View::POS
             <div id="price" class = "center-block" style="width:500px;height:350px;"></div>
         </div>
         <div class="col-lg-6">
-            <div id="portion" class = "center-block" style="width:500px;height:350px;"></div>
+            <div id="trend" class = "center-block" style="width:500px;height:350px;"></div>
         </div>
         <div class="col-lg-6">
-            <div id="trend" class = "center-block" style="width:500px;height:350px;"></div>
+            <div id="portion" class = "center-block" style="width:500px;height:350px;"></div>
         </div>
         <div class="col-lg-6">
             <ul class="nav nav-tabs" role="tablist">
@@ -194,8 +194,8 @@ $this->registerJsFile("@web/js/echarts.min.js",['position' => \yii\web\View::POS
                     right: 'right',
                 },
                 grid: {
-                    left: '3%',
-                    right: '4%',
+                    left: '5%',
+                    right: '10%',
                     bottom: '3%',
                     containLabel: true
                 },
@@ -203,11 +203,12 @@ $this->registerJsFile("@web/js/echarts.min.js",['position' => \yii\web\View::POS
                     {
                         type : 'category',
                         boundaryGap : false,
-                        data : ['First','Second','Third','Fourth']
+                        data : ['First Week','Second Week','Third Week','Fourth Week']
                     }
                 ],
                 yAxis : [
                     {
+                        name : 'percentage %',
                         type : 'value',
                         scale: true,
                         precision: 2,

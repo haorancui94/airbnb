@@ -226,6 +226,13 @@ and
 R6.room_type = R7.room_type
 and
 R7.room_type = R8.room_type')->bindValue(':city',$search_key)->queryAll();
+
+        foreach ($trends as &$trend){
+            $trend['FIRST_WEEK'] = $trend['FIRST_WEEK']*100;
+            $trend['SECOND_WEEK'] = $trend['SECOND_WEEK']*100;
+            $trend['THIRD_WEEK'] = $trend['THIRD_WEEK']*100;
+            $trend['FORTH_WEEK'] = $trend['FORTH_WEEK']*100;
+        }
         return $this->render('index', [
             'search_key' => $search_key,
             'popular' => $popular,

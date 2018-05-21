@@ -27,12 +27,12 @@ if(empty($trends['FORTHWEEK'])){
 ?>
 <div class="container">
     <div class="row">
-        <div class="col-lg-6">
-            <img class= "img-responsive center-block" src="<?=$listing->PICTURE_URL?>">
+        <div class="col-lg-6" style="height:350px ">
+            <img class= "img-responsive center-block" style="height: inherit" src="<?=$listing->PICTURE_URL?>">
         </div>
         <div class="col-lg-6">
             <h3>Booking Trends</h3>
-            <div id="trends" class = "center-block" style="width:400px;height:350px;">
+            <div id="trends" class = "center-block" style="width:450px;height:350px;">
             </div>
         </div>
             <div class="col-lg-6">
@@ -178,11 +178,15 @@ if(empty($trends['FORTHWEEK'])){
     var myChart = echarts.init(document.getElementById('trends'));
     option = {
         xAxis: {
+            name: 'week',
             type: 'category',
-            data: ['first', 'second', 'third', 'forth']
+            data: ['first', 'second', 'third', 'fourth']
         },
         yAxis: {
-            type: 'value'
+            name: 'day',
+            type: 'value',
+            max:7,
+            min:0,
         },
         series: [{
             data: [<?=$first?>,<?=$second?>,<?=$third?>,<?=$forth?>],
